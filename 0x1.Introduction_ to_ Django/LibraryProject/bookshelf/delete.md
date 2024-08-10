@@ -2,6 +2,7 @@
 
 ## Python Command
 ```python
+from bookshelf.models import Book
 retrieved_book.delete()
 
 try:
@@ -11,4 +12,3 @@ except Book.DoesNotExist:
 
 ##Output
     ## Book successfully deleted.
-    

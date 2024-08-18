@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import DetailView
+from django.views.generic.detail import DetailView
 from .models import Book
 from .models import Library
 from django.views.generic.edit import CreateView
@@ -19,11 +19,14 @@ def list_books(request):
   
 
   
-def LibraryDetailView(self, request):
-    """Injects additional context data specific to the book."""
-    context = {'detail_view': book}
-    book = self.get_object()# Retrieve the current book instance
-    return render(request, 'relationship_app/library_detail.html', context)
+class LibraryDetailView(ListView):
+    model = Book
+    template_name = 'relationship_app/library_detail.html'  # Use the library_detail.html template for this view
+    context_object_name = 'books'  # Context variable name to be used in the template
+
+    def get_queryset(self):
+        library_id = self.kwargs['library_id']  # Retrieve the library_id from the URL
+        return Book.objects.filter(library__id=library_id)  
 
 def register(request):
     form = UserCreationForm()

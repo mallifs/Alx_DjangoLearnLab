@@ -11,13 +11,9 @@ class RegisterView(CreateView):
     success_url = reverse_lazy('login')
 
 
-def book_list(request):
+def list_books(request):
     books = Book.objects.all()
-    response = "<h1>Book List</h1>"
-    for book in books:
-        response += f"<p>{book.title} by {book.author}</p>"
-    return HttpResponse(response)
-
+    return render(request, 'list_books.html', {'books': books})
 
  
 class LibraryDetailView(DetailView):

@@ -1,20 +1,21 @@
 from django.urls import path
-from .views import list_books
+from .import views
 from .views import  register, LoginView
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import views as auth_views
-from .views import admin_view, librarian_view, member_view
-from . import views
+
+
 
 urlpatterns = [
-    # URL pattern for the function-based view that lists all books
-    path('books/', book_list_view, name='book-list'),
 
-    # URL pattern for the class-based view that displays details for a specific library
-    path('library/<int:pk>/', LibraryDetailView.as_view(), name='library-detail'),
-   
+    path('books/', views.list_books, name='list_books'),
+    path('library/<int:pk>/', views.LibraryDetailView, name='library_detail'),
+    # path("register", register, name="register"),
+    # path("login", LoginView.as_view, name="login"),
+    # path("logout", LogoutView.as_view, name="logout"),
+
 ]
 
 urlpatterns = [
@@ -24,13 +25,15 @@ urlpatterns = [
     
 ]
 
+
+from .views import admin_view, librarian_view, member_view
+
 urlpatterns = [
     path('admin/', admin_view, name='admin_view'),
     path('librarian/', librarian_view, name='librarian_view'),
     path('member/', member_view, name='member_view'),
- 
+    # Other URL patterns...
 ]
-
 
 urlpatterns = [
     path('add_book/', views.add_book, name='add_book'),

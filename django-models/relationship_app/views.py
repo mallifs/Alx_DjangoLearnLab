@@ -7,13 +7,12 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import TemplateView
 from django.contrib.auth import login
-from .views import list_books
 
 
 
 
 
-def list_books(request):
+def List_books(request):
       books = Book.objects.all()  # Fetch all book instances from the database
       return render(request, 'relationship_app/list_books.html', {'books': books})
     

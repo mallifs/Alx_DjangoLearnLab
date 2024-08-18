@@ -12,7 +12,7 @@ from django.contrib.auth import login
 
 
 
-def List_books(request):
+def list_books(request):
       books = Book.objects.all()  # Fetch all book instances from the database
       return render(request, 'relationship_app/list_books.html', {'books': books})
     

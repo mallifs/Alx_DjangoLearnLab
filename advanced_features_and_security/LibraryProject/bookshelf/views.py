@@ -34,3 +34,5 @@ def delete_book(request, pk):
         book.delete()
         return redirect('book_list')
     return render(request, 'confirm_delete.html', {'book': book})
+
+

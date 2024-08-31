@@ -13,9 +13,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include("api.urls")),  # Include API app URLs
+    path('api/', include("api.urls"))
 ]
-
 
 router = DefaultRouter()
 router.register(r'books', BookViewSet)
@@ -24,9 +23,7 @@ urlpatterns = [
     path('', include(router.urls)),
 ]
 
-# Define the URL patterns
 urlpatterns = [
-    path('', include(router.urls)),   
-    path('books-list/', BookList.as_view(), name='book-list'),   
-    path('api-token-auth/', obtain_auth_token, name='api_token_auth'), 
+    path('books/', include(router.urls)),
+    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
 ]

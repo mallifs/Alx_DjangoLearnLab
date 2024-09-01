@@ -1,14 +1,16 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import BookViewSet
-from .views import BookList
-from rest_framework.authtoken.views import obtain_auth_token
+from django.shortcuts import render
+from rest_framework import viewsets
 
-router = DefaultRouter()
-router.register(r'books', BookViewSet)
+from rest_framework import generics
+from .models import Book
+from .serializers import BookSerializer
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
-urlpatterns = [
-    path('', include(router.urls)),
-    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
-    path('books/', BookList.as_view(), name="book-list")
-]
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+class BookList(generics.ListAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [IsAuthenticated]

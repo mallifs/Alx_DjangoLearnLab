@@ -1,6 +1,9 @@
 from django.test import TestCase
-
-# Create your tests here.
+from django.urls import reverse
+from rest_framework import status
+from .views import *
+from rest_framework.authtoken.models import Token
+from django.contrib.auth.models import User
 
 from django.urls import reverse
 from rest_framework.test import APITestCase, APIClient
@@ -21,9 +24,9 @@ class BookAPITestCase(APITestCase):
     def test_create_book(self):
         url = reverse('book-list')
         data = {
-            'title': 'New Book',
-            'author': 'Jane Smith',
-            'publication_year': 2022
+            'title': 'Imagine',
+            'author': 'Bill Stones',
+            'publication_year': 2020
         }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)

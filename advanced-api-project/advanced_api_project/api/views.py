@@ -16,7 +16,7 @@ class BookListView(generics.ListAPIView):
     filterset_fields = ['title', 'author__name', 'publication_year']
     search_fields = ['title', 'author__name']
     ordering_fields = ['title', 'publication_year']
-    ordering = ['title']  # Optional default ordering
+    ordering = ['title']   
 
 # Retrieve a single book by ID
 class BookDetailView(generics.RetrieveAPIView):

@@ -1,15 +1,15 @@
 from django.shortcuts import render
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
+from rest_framework.views import APIView # type: ignore
+from rest_framework.response import Response # type: ignore
+from rest_framework import status # type: ignore
 from django.contrib.auth import authenticate
-from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.models import Token # type: ignore
 from .serializers import UserRegistrationSerializer,UserSerializer,TokenSerializer
 from django.contrib.auth import get_user_model
-from rest_framework import generics, permissions,filters
-from rest_framework  import generics    
+from rest_framework import generics, permissions,filters # type: ignore
+from rest_framework  import generics     # type: ignore
 from django.shortcuts import get_object_or_404
-from rest_framework.response import Response
+from rest_framework.response import Response # type: ignore
 
 CustomUser = get_user_model()
 class UserRegistrationView(APIView):

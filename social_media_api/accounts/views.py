@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
-from .serializer import UserRegistrationSerializer, TokenSerializer
+from .serializers import UserRegistrationSerializer, TokenSerializer
 from django.contrib.auth import get_user_model
 from rest_framework import generics, permissions,filters
 from rest_framework  import generics    
